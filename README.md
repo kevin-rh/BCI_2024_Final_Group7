@@ -44,3 +44,9 @@ f. Machine Learning Model Utilized: EEGNet, LightGBM, SVM, KNN, XGBoost
 III. Validation
 
 Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Absolute Error), and AUC. 
+
+IV. Usage
+
+V. Results
+
+VI. References
