@@ -3,6 +3,8 @@
 
 **Authors**:
 Kevin Richardson Halim, Filippo Jonathan Lie, Nathan Jacky Lee
+Here are the Design and items used in the project:
+
 1. Experimental Design
    
    <img width="366" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/4875b3b8-6af1-4c95-8dbe-fb7bdb3f1547">
@@ -16,4 +18,7 @@ Data Collection is not done manually and is taken from pre-existing data as inst
 3. Hardware and Software Used
 
    Hardware: Personal Laptops and devices
-   Software: 
+   
+   Software: EEGlab, Matlab, Google Collab (Python), Microsoft Office
+   
+   Website: HackMD, Github
