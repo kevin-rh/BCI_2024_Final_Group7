@@ -15,6 +15,15 @@ The project starts from Data Preprocessing and divided into 2 methods, where 1 w
 
 Data Collection is not done manually and is taken from pre-existing data as instructed. The dataset can be accessed from : https://nemar.org/dataexplorer/detail?dataset_id=ds002723. 
 
+Initial Collection Purpose:
+To investigate the performance of a real-time and online brain-computer interface that identified the user’s emotional state and modified music on-the-fly in order to induce a target emotional state.
+
+Experiment method:
+Each participant listens to 60 seconds of music. The first 20 seconds puts the participant in emotional state A, while the last 20 seconds puts them in emotional state B. The middle 20 seconds is used to transition from A to B and to figure out what state the participant is actually in. The sampling rate is 1 kHz and all music used was generated with a synthetic music generator.
+
+Classes/Labels: there are 9 different labels, with "valence" and "arousal" each having "low", "neutral", and "high".
+Participants: 8 healthy adults 19-30 years old
+
 3. Hardware and Software Used
 
    Hardware: Personal Laptops and devices
