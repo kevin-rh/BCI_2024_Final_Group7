@@ -89,6 +89,7 @@ Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Abs
 ## IV. Usage
 With the file structure of `ds002723` dataset, the working directory inside each MATLAB code and Python code need to be changed accordingly.
 ### Dependency
+```
 MATLAB Plugins:
 - EEGLab v2024.0
 
@@ -114,8 +115,10 @@ File Structure and Access:
 - Each patient is denoted as `sub-` or subject.
 - Each inside of `sub-` has multiple run in the folder distincted as `run-`.
 - Data is inside `.esd` format read with BIOSIG in MATLAB.
+```
 
 ### Code Instructions and Configurations
+```
 MATLAB:
 Run `dataPreprocess.m` in MATLAB:
 1. Pre-processing:
@@ -138,6 +141,7 @@ Run files on folder '\model' in python3:
 1. To train the model.
 2. Predict and validate/test model.
 3. Output matrix that will be compared later.
+```
 
    
 ## V. Results
