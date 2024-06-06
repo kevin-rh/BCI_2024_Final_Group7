@@ -87,7 +87,32 @@ EEGNet [2], LightGBM, SVM, KNN, XGBoost
 Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Absolute Error), and AUC. 
 
 ## IV. Usage
+With the file structure of `ds002723` dataset, the working directory inside each MATLAB code and Python code need to be changed accordingly.
 
+MATLAB:
+Run `dataPreprocess.m` in MATLAB:
+1. Pre-processing:
+    a. Filter (Low, High Pass, Line Noise Removal).
+    b. Data correction by ASR Algorithm.
+2. IC Labeling: by the ICA and ICLabel functions.
+3. Reject bad components which set 0.8-1 as threshold to all, except EEG and Other.
+4. Save Pre-processed dataset in a folder `/preprocessed`.
+
+Run `dataSegmentation.m` in MATLAB:
+1. segment the data by the event `.tsv` data.
+
+Python:
+Run `featureExtractions.py` in python3:
+1. Feature extract
+2. Seperated train and test data.
+3. Save the data with format.
+
+Run files on folder '\model' in python3:
+1. To train the model.
+2. Predict and validate/test model.
+3. Output matrix that will be compared later.
+
+   
 ## V. Results
 
 ## VI. References
