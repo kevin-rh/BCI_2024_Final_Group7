@@ -32,8 +32,8 @@ for folderId = 1:numPatient
         EEG = pop_select( EEG, 'rmchannel',{'GSR','ECG','VA1','VA2'});
 
         % Set Channels Location
-        EEG = pop_chanedit(EEG, 'load',{'C:\Users\kevin\Downloads\ds002723\ds002723\channel-we-use.ced','filetype','autodetect'});
-        EEG = pop_runica(EEG, 'pca', 32, 'icatype', 'picard', 'maxiter',500);
+        EEG = pop_chanedit(EEG, 'load',{[filePath, '\channel-we-use.ced'],'filetype','autodetect'});
+        EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter',500);
         EEG = pop_iclabel(EEG, 'default');
 
         [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
