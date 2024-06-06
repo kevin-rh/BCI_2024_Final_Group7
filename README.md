@@ -25,15 +25,22 @@ Classes/Labels: there are 9 different labels, with "valence" and "arousal" each 
 Participants: 8 healthy adults 19-30 years old
 
 ## 3. Hardware and Software Used
-
-   Hardware: Personal Laptops and devices
-   
-   Software: EEGlab, Matlab, Google Collab (Python), Microsoft Office
-   
-   Website: HackMD, Github
+- Hardware: Personal Laptop (AMD Ryzen 9 4900H, clockspeed of 3.30 GHz, memory of 16.0 GB).
+- Software:
+   - Operating System: Windows 10 (v19045.4412, 64-bit).
+   - Internal Software: EEGLAB, MATLAB, Microsoft Office, Python (conda).
+- Website: HackMD, Github, Google Collab Notebook (Python). 
+  
 ## 4. Data Information
+The dataset comprises data from 8 subjects. The sampling rate is 1 kHz and the music listening task corresponding to a music clip is 60 s long (clip duration). 
+Each subject consist of multiple runs. the total run from all the patiens is 44 runs. In a run it can consist of multiple epoch of music listening task where it the patients are asked to input the emotion state. 
+Later the input state from the patients will be the label to be predict in this project. The dataset has nine emotional states at the start of each trial: 1-LVLA, 2-NVLA, 3-HVLA, 4-LVNA, 5-NVNA, 6-HVNA, 7-LVHA, 8-NVHA, and 9-HVHA. Each label combines valence (positive or negative) and arousal (intensity).
 
-## 5. Website Data 
+EEG waves collected with a 10-20 System of EEG Electrode Placement. In this dataset it has 32 channels: FP1, FPz, FP2, F7, F3, Fz, F4, F8, FT9, FC5, FC1, FC2, FC6, FT10, T7, C3, Cz, C4, T8, TP9, CP5, CP1, CP2, CP6, TP10, P7, P3, Pz, P4, P8, O1, O2. The powerline frequency in the data experiment is 50Hz. The more detailed information can be gathered at their paper [1].
+
+## 5. Website Origin 
+Williams, D., Kirke, A., Miranda, E.R., Daly, I., Hwang, F., Weaver, J., Nasuto, S.J., “Affective Calibration of Musical Feature Sets in an Emotionally Intelligent Music Composition System”, ACM Trans. Appl. Percept. 14, 3, Article 17 (May 2017), 13 pages. DOI: https://doi.org/10.1145/3059005 [ [site](https://nemar.org/dataexplorer/detail?dataset_id=ds002723
+) | [PDF](https://dl.acm.org/doi/pdf/10.1145/3059005) ]
 
 # B. Data Quality Evaluation
 It shows that more layers of the correct type of preprocessing of the EEG data have a direct effect on the time complexity of ICA data decomposition. In this experiment, the iteration results around 115, 75, and 55 in response to raw, filtered, and filtered+ASR(Artifact Subspace Reconstructions), respectively.
@@ -48,9 +55,6 @@ Implemented with FastICA with 32 components. The table below is the average numb
 
 From the data above it really shown that the working dataset in this project has a lot of artifact. It shows preprocessing data really helps, it showed by the recognized Brain Components Value's leap from 2.45 to 14.86 even only band-pass filter and cleaning line noise. The improvment also occur on the data after getting a reconstructions by ASR algorithms. Either way the algorithm does not really a reliable way to solve these problem of artifact in EEG, it showed that it still canot recognize a 7 unclassified signal.
 
-
-
-
 # C. Report
 
 ## I. Introduction
@@ -61,7 +65,7 @@ The project revolves around a comparison study within the model and dataset. As 
 
 ### a. Input and Output mechanism
 Input will be in the `.edf` format and read into EEGLAB with BIOSIG plugin. It wil went through a process where it will be formated into `.mat` to be used later in Python code.
-The python will read `.mat` format file which already contain input and label data 
+The python will read `.mat` format file which already contain input and label data. The data then processed in python and will goes into each code's format with help of `pandas` and `numpy`.
 
 ### b. Signal Preprocessing Techniques
 Signal preprocessing will be treated with a band pass filtering from the 0.5Hz threshold below and 120Hz threshold above which done sepreately suggested from the comunity.
@@ -70,6 +74,7 @@ The will got through the further artifact removal with ASR and ICA/ICLabel thres
 
 ### c. Data Segmentation Methods
 Data segmented in the EEGLAB with the help of GUI to segment the data from 0 to the 21 second from the event time onset occurence.
+In results, the data is segmented by Epoch and saved in a `.mat` format.
 
 ### d. Artifact Removal Strategy
 Our approach implemented in EEGLAB (MATLAB) as the `dataPreprocess.m` where we implement Artifact Subspace Reconstruction (ASR) with a window of 20 seconds which is optimal from a paper [3].
@@ -80,10 +85,9 @@ Removing all other data except `Other` and `Brain` signal detected by ICLabel EE
 Our approach on feature extration would be implementing MNE-features library. 
 
 ### f. Machine Learning Model Utilized
-EEGNet [2], LightGBM, SVM, KNN, XGBoost
+EEGNet [2], LightGBM, SVM, KNN, XGBoost.
 
 ## III. Validation
-
 Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Absolute Error), and AUC. 
 
 ## IV. Usage
