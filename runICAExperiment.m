@@ -1,69 +1,76 @@
-% Set parameter
-filePath = 'C:\Users\kevin\Downloads\dataset';
-files = dir(fullfile(filePath, '*.set'));
-filesNames = {files.name};
-
-numData = 5 % size(filesNames) % to use all
-
 % Initialize
-rawICLabelCount = zeros(1,7);
-filteredICLabelCount = zeros(1,7);
-ASRfilteredICLabelCount = zeros(1,7);
+ICLabelCount = zeros(3,7);
 
-for fileId = 1:numData
-    % Load existing dataset
-    fileName = char(filesNames(fileId))
-    EEG = pop_loadset(fileName, filePath)
-    EEG.etc.eeglabvers = '2022.1';
-    EEG.etc.eeglabvers = '2024.0';
-    
-    % (RAW) Get the Label by ICA and ICLabel
-    EEG = pop_runica(EEG, 'icatype', 'runica', 'extended',1,'rndreset','yes','interrupt','on','pca',32);
-    EEG = pop_iclabel(EEG, 'default');
-    [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
-    for rowIndId = 1:size(rowIndices)
-        maxId = rowIndices(rowIndId);
-        rawICLabelCount(maxId) = rawICLabelCount(maxId) + 1;
+totalData = 0;
+
+% Set file access parameter
+savePath = 'C:\Users\kevin\Downloads\ds002723\preprocessed\';
+
+filePath = 'C:\Users\kevin\Downloads\ds002723\ds002723';
+patientFolders = dir(fullfile(filePath, 'sub-*'));
+patientFolders = {patientFolders.name};
+numPatient = size(patientFolders, 2);
+
+EEG.etc.eeglabvers = '2024.0';
+
+
+for folderId = 1:numPatient
+    curPath = [filePath, '\', char(patientFolders(folderId)), '\eeg'];
+    files = dir(fullfile(curPath, '*.edf'));
+
+    filesNames = {files.name};
+    numFile = size(filesNames, 2);
+    totalData = totalData + numFile;
+
+    for fileId = 1:numFile
+        % Load  dataset
+        fileName = char(filesNames(fileId));
+        curFile = [curPath, '\', fileName];   
+        EEG = pop_biosig(curFile);       
+
+        % Remove non-EEG Channels
+        EEG = pop_select( EEG, 'rmchannel',{'GSR','ECG','VA1','VA2'});
+
+        % Set Channels Location
+        EEG = pop_chanedit(EEG, 'load',{'C:\Users\kevin\Downloads\ds002723\ds002723\channel-we-use.ced','filetype','autodetect'});
+        EEG = pop_runica(EEG, 'pca', 32, 'icatype', 'picard', 'maxiter',500);
+        EEG = pop_iclabel(EEG, 'default');
+
+        [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
+        for rowIndId = 1:size(rowIndices)
+            maxId = rowIndices(rowIndId);
+            ICLabelCount(1, maxId) = ICLabelCount(1, maxId) + 1;
+        end
+
+        % Filter the EEG 
+        % Passband 0.5-120 Hz
+        % % Clean Line Noise 50Hz 100Hz
+        EEG = pop_eegfiltnew(EEG, 'locutoff',0.5,'plotfreqz',1);
+        EEG = pop_eegfiltnew(EEG, 'hicutoff',120,'plotfreqz',1);
+        EEG = pop_cleanline(EEG, 'bandwidth',2,'chanlist',[1:32] ,'computepower',1,'linefreqs',[50 100] ,'newversion',0,'normSpectrum',0,'p',0.01,'pad',2,'plotfigures',0,'scanforlines',0,'sigtype','Channels','taperbandwidth',2,'tau',100,'verb',1,'winsize',4,'winstep',1);
+        
+        EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter',500);
+        EEG = pop_iclabel(EEG, 'default');
+        [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
+        for rowIndId = 1:size(rowIndices)
+            maxId = rowIndices(rowIndId);
+            ICLabelCount(2, maxId) = ICLabelCount(2, maxId) + 1;
+        end
+
+        % ASR-Corrected the EEG
+        EEG = pop_clean_rawdata(EEG, 'FlatlineCriterion','off','ChannelCriterion','off','LineNoiseCriterion','off','Highpass','off','BurstCriterion',20,'WindowCriterion','off','BurstRejection','off','Distance','Euclidian');
+        
+        EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter',500);
+        EEG = pop_iclabel(EEG, 'default');
+        [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
+        for rowIndId = 1:size(rowIndices)
+            maxId = rowIndices(rowIndId);
+            ICLabelCount(3, maxId) = ICLabelCount(3, maxId) + 1;
+        end
+        
+        EEG = pop_saveset( EEG, 'filename',[fileName(1:end-4), '.set'],'filepath',savePath);
     end
-
-    % High-pass 0.5 Hz
-    EEG = pop_eegfiltnew(EEG, 'locutoff',0.5,'plotfreqz',1);
-    % Low-pass 120 Hz
-    EEG = pop_eegfiltnew(EEG, 'hicutoff',120,'plotfreqz',1);
-    % Clean Noise Line 50Hz 100Hz
-    EEG = pop_cleanline(EEG, 'bandwidth',2,'chanlist',[1:33] ,'computepower',1,'linefreqs',[50 100] ,'newversion',0,'normSpectrum',0,'p',0.01,'pad',2,'plotfigures',0,'scanforlines',0,'sigtype','Channels','taperbandwidth',2,'tau',100,'verb',1,'winsize',4,'winstep',1);
-    
-
-    % (FILTERED) Get the Label by ICA and ICLabel
-    EEG = pop_runica(EEG, 'icatype', 'runica', 'extended',1,'rndreset','yes','interrupt','on','pca',32);
-    EEG = pop_iclabel(EEG, 'default');
-    [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
-    for rowIndId = 1:size(rowIndices)
-        maxId = rowIndices(rowIndId);
-        filteredICLabelCount(maxId) = filteredICLabelCount(maxId) + 1;
-    end
-    fileName = [fileName(1:end-4), '_filter', fileName(end-3:end)];
-    EEG = pop_saveset( EEG, 'filename', fileName,'filepath', filePath);
-
-
-    % ASR-Corrected
-    EEG = pop_clean_rawdata(EEG, 'FlatlineCriterion','off','ChannelCriterion','off','LineNoiseCriterion','off','Highpass','off','BurstCriterion',20,'WindowCriterion','off','BurstRejection','off','Distance','Euclidian');
-
-    % (ASR-CORRECTED) Get the Label by ICA and ICLabel
-    EEG = pop_runica(EEG, 'icatype', 'runica', 'extended',1,'rndreset','yes','interrupt','on','pca',32);
-    EEG = pop_iclabel(EEG, 'default');
-    [~, rowIndices] = max(EEG.etc.ic_classification.ICLabel.classifications, [], 2);
-    for rowIndId = 1:size(rowIndices)
-        maxId = rowIndices(rowIndId);
-        ASRfilteredICLabelCount(maxId) = ASRfilteredICLabelCount(maxId) + 1;
-    end
-    fileName = [fileName(1:end-4), '_asr', fileName(end-3:end)];
-    EEG = pop_saveset( EEG, 'filename', fileName,'filepath', filePath);
-
 end
 
-disp(rawICLabelCount / numData);
-disp(filteredICLabelCount / numData);
-disp(ASRfilteredICLabelCount / numData);
-
-
+avgICLabelCount = ICLabelCount/totalData;
+disp(avgICLabelCount);
