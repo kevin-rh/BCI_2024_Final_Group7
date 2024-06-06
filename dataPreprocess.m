@@ -2,9 +2,10 @@ EEG.etc.eeglabvers = '2024.0';
 totalData = 0;
 
 % Set File IO parameter
-savePath = 'C:\Users\kevin\Downloads\ds002723\preprocessed\';
+wkdirPath = 'C:\Users\kevin\Downloads\ds002723\';
+filePath = [wkdirPath, 'ds002723\'];
+savePath = [wkdirPath, 'preprocessed\'];
 
-filePath = 'C:\Users\kevin\Downloads\ds002723\ds002723';
 patientFolders = dir(fullfile(filePath, 'sub-*'));
 patientFolders = {patientFolders.name};
 numPatient = size(patientFolders, 2);
@@ -29,12 +30,11 @@ for folderId = 1:numPatient
         % Set Channels Location
         EEG = pop_chanedit(EEG, 'load',{[filePath, '\channel-we-use.ced'],'filetype','autodetect'});
 
-
         % FIR EEG
         % Passband 0.5-120 Hz
         % % Clean Line Noise 50Hz 100Hz
-        EEG = pop_eegfiltnew(EEG, 'locutoff',0.5,'plotfreqz',1);
-        EEG = pop_eegfiltnew(EEG, 'hicutoff',120,'plotfreqz',1);
+        EEG = pop_eegfiltnew(EEG, 'locutoff',0.5,'plotfreqz',0);
+        EEG = pop_eegfiltnew(EEG, 'hicutoff',120,'plotfreqz',0);
         EEG = pop_cleanline(EEG, 'bandwidth',2,'chanlist',[1:32] ,'computepower',1,'linefreqs',[50 100] ,'newversion',0,'normSpectrum',0,'p',0.01,'pad',2,'plotfigures',0,'scanforlines',0,'sigtype','Channels','taperbandwidth',2,'tau',100,'verb',1,'winsize',4,'winstep',1);
 
         % ASR EEG
