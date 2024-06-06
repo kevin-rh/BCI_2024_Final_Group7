@@ -34,6 +34,7 @@ Participants: 8 healthy adults 19-30 years old
 ## 4. Data Information
 The dataset comprises data from 8 subjects. The sampling rate is 1 kHz and the music listening task corresponding to a music clip is 60 s long (clip duration). 
 Each subject consist of multiple runs. the total run from all the patiens is 44 runs. In a run it can consist of multiple epoch of music listening task where it the patients are asked to input the emotion state. 
+
 Later the input state from the patients will be the label to be predict in this project. The dataset has nine emotional states at the start of each trial: 1-LVLA, 2-NVLA, 3-HVLA, 4-LVNA, 5-NVNA, 6-HVNA, 7-LVHA, 8-NVHA, and 9-HVHA. Each label combines valence (positive or negative) and arousal (intensity).
 
 EEG waves collected with a 10-20 System of EEG Electrode Placement. In this dataset it has 32 channels: FP1, FPz, FP2, F7, F3, Fz, F4, F8, FT9, FC5, FC1, FC2, FC6, FT10, T7, C3, Cz, C4, T8, TP9, CP5, CP1, CP2, CP6, TP10, P7, P3, Pz, P4, P8, O1, O2. The powerline frequency in the data experiment is 50Hz. The more detailed information can be gathered at their paper [1].
