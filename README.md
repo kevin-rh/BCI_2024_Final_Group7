@@ -4,9 +4,38 @@
 **Authors**:
 Kevin Richardson Halim, Filippo Jonathan Lie, Nathan Jacky Lee
 
-# Task
-## A. Experimental Design/Paradigm 
-## B. Quality Evaluation
+# A. Overview 
+## 1. Experimental Design
+   
+   <img width="366" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/4875b3b8-6af1-4c95-8dbe-fb7bdb3f1547">
+
+The project starts from Data Preprocessing and divided into 2 methods, where 1 will immediately receive feature extraction, Model training and testing, followed by output, while the other will receive artifact removal first before the other process.
+
+## 2. Procedure of Data Collection
+
+Data Collection is not done manually and is taken from pre-existing data as instructed. The dataset can be accessed from : https://nemar.org/dataexplorer/detail?dataset_id=ds002723. 
+
+Initial Collection Purpose:
+To investigate the performance of a real-time and online brain-computer interface that identified the user’s emotional state and modified music on-the-fly in order to induce a target emotional state.
+
+Experiment method:
+Each participant listens to 60 seconds of music. The first 20 seconds puts the participant in emotional state A, while the last 20 seconds puts them in emotional state B. The middle 20 seconds is used to transition from A to B and to figure out what state the participant is actually in. The sampling rate is 1 kHz and all music used was generated with a synthetic music generator.
+
+Classes/Labels: there are 9 different labels, with "valence" and "arousal" each having "low", "neutral", and "high".
+Participants: 8 healthy adults 19-30 years old
+
+## 3. Hardware and Software Used
+
+   Hardware: Personal Laptops and devices
+   
+   Software: EEGlab, Matlab, Google Collab (Python), Microsoft Office
+   
+   Website: HackMD, Github
+## 4. Data Information
+
+## 5. Website Data 
+
+# B. Data Quality Evaluation
 It shows that more layers of the correct type of preprocessing of the EEG data have a direct effect on the time complexity of ICA data decomposition. In this experiment, the iteration results around 115, 75, and 55 in response to raw, filtered, and filtered+ASR(Artifact Subspace Reconstructions), respectively.
 
 EEG: 32-channel, 44-dataset. The working enviroment for this experiment is EEGLAB on MATLAB.
@@ -20,32 +49,9 @@ Implemented with FastICA with 32 components. The table below is the average numb
 From the data above it really shown that the working dataset in this project has a lot of artifact. It shows preprocessing data really helps, it showed by the recognized Brain Components Value's leap from 2.45 to 14.86 even only band-pass filter and cleaning line noise. The improvment also occur on the data after getting a reconstructions by ASR algorithms. Either way the algorithm does not really a reliable way to solve these problem of artifact in EEG, it showed that it still canot recognize a 7 unclassified signal.
 
 
-# 1. Experimental Design
-   
-   <img width="366" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/4875b3b8-6af1-4c95-8dbe-fb7bdb3f1547">
 
-The project starts from Data Preprocessing and divided into 2 methods, where 1 will immediately receive feature extraction, Model training and testing, followed by output, while the other will receive artifact removal first before the other process.
 
-# 2. Procedure of Data Collection
-
-Data Collection is not done manually and is taken from pre-existing data as instructed. The dataset can be accessed from : https://nemar.org/dataexplorer/detail?dataset_id=ds002723. 
-
-Initial Collection Purpose:
-To investigate the performance of a real-time and online brain-computer interface that identified the user’s emotional state and modified music on-the-fly in order to induce a target emotional state.
-
-Experiment method:
-Each participant listens to 60 seconds of music. The first 20 seconds puts the participant in emotional state A, while the last 20 seconds puts them in emotional state B. The middle 20 seconds is used to transition from A to B and to figure out what state the participant is actually in. The sampling rate is 1 kHz and all music used was generated with a synthetic music generator.
-
-Classes/Labels: there are 9 different labels, with "valence" and "arousal" each having "low", "neutral", and "high".
-Participants: 8 healthy adults 19-30 years old
-
-# 3. Hardware and Software Used
-
-   Hardware: Personal Laptops and devices
-   
-   Software: EEGlab, Matlab, Google Collab (Python), Microsoft Office
-   
-   Website: HackMD, Github
+# C. Report
 
 ## I. Introduction
 
