@@ -9,8 +9,8 @@ Kevin Richardson Halim, Filippo Jonathan Lie, Nathan Jacky Lee
 ## B. Quality Evaluation
 It shows that more layers of the correct type of preprocessing of the EEG data have a direct effect on the time complexity of ICA data decomposition. In this experiment, the iteration results around 115, 75, and 55 in response to raw, filtered, and filtered+ASR(Artifact Subspace Reconstructions), respectively.
 
-EEG: 32-channel, 44-dataset.
-Implemented with FastICA with 32 components.
+EEG: 32-channel, 44-dataset. The working enviroment for this experiment is EEGLAB on MATLAB.
+Implemented with FastICA with 32 components. The table below is the average number of ICs classified by ICLabel.
 | `Pre-processing` | Brain   | Muscle  | Eye    | Heart | Line Noise | Channel Noise | Other       |
 |----------------|---------|---------|--------|-------|------------|---------------|-------------|
 | `raw`            | 2.45    | 0.98    | 0.14   | 0     | 0.11       | 0.02          | 28.3       |
