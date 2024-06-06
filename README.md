@@ -88,7 +88,34 @@ Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Abs
 
 ## IV. Usage
 With the file structure of `ds002723` dataset, the working directory inside each MATLAB code and Python code need to be changed accordingly.
+### Dependency
+MATLAB Plugins:
+- EEGLab v2024.0
 
+EEGLAB Plugins:
+- Included: ICLabel, ICA, ChannelLocate, etc.
+- BIOSIG (to read data)
+- Cleanline v2.00 (to clean 50Hz 100Hz line noise)
+- PICARD v1.0 (to use the implementation of FastICA decomposing)
+
+Python v3.9.7. Libraries:
+- MNE https://mne.tools/stable/install/index.html
+- PyTorch https://pytorch.org/
+- Scikit-Learn https://scikit-learn.org/stable/index.html
+- LightGBM https://lightgbm.readthedocs.io/en/latest/index.html
+- XGBoost https://xgboost.readthedocs.io/en/stable/install.html
+
+Channel location (in this case .ced is used):
+- Set the channel location for one dataset then save the channel location. 
+- Done by GUI of EEGLab on the: https://eeglab.org/tutorials/04_Import/Channel_Locations.html
+
+File Structure and Access:
+- Provided in a MATLAB code file in this repo named as `runICAExperiment.m`.
+- Each patient is denoted as `sub-` or subject.
+- Each inside of `sub-` has multiple run in the folder distincted as `run-`.
+- Data is inside `.esd` format read with BIOSIG in MATLAB.
+
+### Code Instructions and Configurations
 MATLAB:
 Run `dataPreprocess.m` in MATLAB:
 1. Pre-processing:
