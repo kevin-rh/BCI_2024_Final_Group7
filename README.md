@@ -25,8 +25,8 @@ Participants: 8 healthy adults 19-30 years old
 ## 3. Hardware and Software Used
 - Hardware: Personal Laptop (AMD Ryzen 9 4900H, clockspeed of 3.30 GHz, memory of 16.0 GB).
 - Software:
-- Operating System: Windows 10 (v19045.4412, 64-bit).
-- Internal Software: EEGLAB, MATLAB, Microsoft Office, Python (conda).
+    - Operating System: Windows 10 (v19045.4412, 64-bit).
+    - Internal Software: EEGLAB, MATLAB, Microsoft Office, Python (conda).
 - Website: HackMD, Github, Google Collab Notebook (Python). 
 
 ## 4. Data Information
