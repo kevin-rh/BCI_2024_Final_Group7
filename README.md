@@ -148,6 +148,19 @@ Run files on folder '\model' in python3:
 
 
 ## V. Results
+a.EEGNET
+b.SVM
+    The dataset of o1 and o2 are both used and the model accuracy is scored using the scoring model of accuracy_score, f1 score, and MAE. below are the accuracy for o1 and o2, the model shows the exact same accuracy for both datasets:
+    
+<img width="191" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/19bc73e0-7c62-4341-8c0b-3b2fb598fb87">
+
+c. KNN
+    KNN also uses accuracy_score, f1 score, and MAE. below are o1 and o2 respectively while also trying the possible neighbors:
+    o1:
+    <img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
+    o2:
+    
+
 
 ## VI. References
 1. Williams, D., Kirke, A., Miranda, E.R., Daly, I., Hwang, F., Weaver, J., Nasuto, S.J., “Affective Calibration of Musical Feature Sets in an Emotionally Intelligent Music Composition System”, ACM Trans. Appl. Percept. 14, 3, Article 17 (May 2017), 13 pages. DOI: https://doi.org/10.1145/3059005 [ [site](https://nemar.org/dataexplorer/detail?dataset_id=ds002723
