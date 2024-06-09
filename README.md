@@ -156,10 +156,14 @@ b.SVM
 
 c. KNN
     KNN also uses accuracy_score, f1 score, and MAE. below are o1 and o2 respectively while also trying the possible neighbors:
-    o1:
-    <img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
-    o2:
     
+    o1:
+    
+    <img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
+    
+    o2:
+
+    ![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/1b920e93-ee1a-42de-be15-1d4c1703c5af)
 
 
 ## VI. References
