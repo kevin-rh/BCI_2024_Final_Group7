@@ -178,7 +178,8 @@ c. KNN
     
     o2:
 
-![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/1b920e93-ee1a-42de-be15-1d4c1703c5af)
+![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/128037452/7b2c3b21-b814-4434-8d19-913e6a04dac5)
+
 
 
 ## VI. References
