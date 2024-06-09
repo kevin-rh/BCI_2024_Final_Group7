@@ -86,7 +86,7 @@ Our approach to feature extraction would be implementing an MNE-features library
 EEGNet [2], LightGBM, SVM, KNN, XGBoost.
 
 ## III. Validation
-Methods of validating the accuracy of the model will use F1-Score, MAE (Mean Absolute Error), and AUC. 
+Methods of validating the accuracy of the model will use Accuracy_Score, F1-Score, MAE (Mean Absolute Error), and AUC. Although, for SVM and KNN the used accuracy metrics will only include all except AUC.
 
 ## IV. Usage
 With the file structure of the `ds002723` dataset, the working directory inside each MATLAB code and Python code needs to be changed accordingly.
