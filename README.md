@@ -174,7 +174,8 @@ c. KNN
     
     o1:
     
-<img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
+![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/128037452/e3036657-4ee0-4190-ad36-40dedbda267f)
+
     
     o2:
 
