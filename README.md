@@ -149,6 +149,21 @@ Run files on folder '\model' in python3:
 
 ## V. Results
 a.EEGNET
+    The original implementation of EEGNet from https://github.com/vlawhern/arl-eegmodels (mw taro reference/credit) had the option of putting class weights for the model training to counteract class imbalance, so we implemented 2 versions: weighted and unweighted. Here is the result for unweighted:
+Accuracy:  0.6548974943052391
+F1-score:  0.6132639823178936
+
+    Here is the result for weighted:
+Accuracy:  0.6161731207289294
+F1-score:  0.5939953521697537
+
+    We class weights we used were:
+class 1: 1
+class 2: 1,9
+class 3: 3,6
+class 4: 2,6
+This brought the class balance up to approximately equal.
+
 b.SVM
     The dataset of o1 and o2 are both used and the model accuracy is scored using the scoring model of accuracy_score, f1 score, and MAE. below are the accuracy for o1 and o2, the model shows the exact same accuracy for both datasets:
     
