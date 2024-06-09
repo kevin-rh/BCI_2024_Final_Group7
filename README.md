@@ -159,11 +159,11 @@ c. KNN
     
     o1:
     
-    <img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
+<img width="230" alt="image" src="https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/f4366843-2ff3-4f58-bcd2-643d3927cb53">
     
     o2:
 
-    ![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/1b920e93-ee1a-42de-be15-1d4c1703c5af)
+![image](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/134197756/1b920e93-ee1a-42de-be15-1d4c1703c5af)
 
 
 ## VI. References
