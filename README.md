@@ -149,19 +149,15 @@ Run files on folder '\model' in python3:
 
 ## V. Results
 a.EEGNET
-    The original implementation of EEGNet from https://github.com/vlawhern/arl-eegmodels (mw taro reference/credit) had the option of putting class weights for the model training to counteract class imbalance, so we implemented 2 versions: weighted and unweighted. Here is the result for unweighted:
-Accuracy:  0.6548974943052391
-F1-score:  0.6132639823178936
+    The original implementation of EEGNet from https://github.com/vlawhern/arl-eegmodels [2] had the option of putting class weights for the model training to counteract class imbalance, so we implemented 2 versions: weighted and unweighted. Additionally, despite EEGNet being able to handle raw waveform data, we tried running it with the cleaned data just to see the difference. Here are the results we got in terms of accuracy and F1 score:
+![EEGNet_Scores](https://github.com/kevin-rh/BCI_2024_Final_Group7/assets/128037452/bf3adf70-da3e-4a14-b65c-fde5ec905ff0)
+As we can see, the unweighted model performed better than the weighted model, and it does perform slightly better with the cleaned data. Overall, it achieves the highest performance in our experiments of above 60%.
 
-    Here is the result for weighted:
-Accuracy:  0.6161731207289294
-F1-score:  0.5939953521697537
-
-    We class weights we used were:
-class 1: 1
-class 2: 1,9
-class 3: 3,6
-class 4: 2,6
+The class weights we used in the weighted model were:
+- class 1: 1
+- class 2: 1,9
+- class 3: 3,6
+- class 4: 2,6
 This brought the class balance up to approximately equal.
 
 b.SVM
