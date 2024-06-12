@@ -5,7 +5,7 @@ ICLabelCount = zeros(3,7);
 totalData = 0;
 
 % Parameter: File IO 
-wkdirPath = ''; % Set to the working directory you currently have.
+wkdirPath = 'C:\Users\kevin\Downloads\workingDirectory\'; % Set to the working directory you currently have.
 filePath = [wkdirPath, 'ds002723\'];
 savePath = [wkdirPath, 'preprocessed\'];
 
@@ -14,7 +14,7 @@ patientFolders = {patientFolders.name};
 numPatient = size(patientFolders, 2);
 
 for folderId = 1:numPatient
-    curPath = [filePath, '\', char(patientFolders(folderId)), '\eeg'];
+    curPath = [filePath, char(patientFolders(folderId)), '\', 'eeg'];
     filesName = dir(fullfile(curPath, '*.edf'));
 
     filesNames = {filesName.name};
