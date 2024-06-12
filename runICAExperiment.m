@@ -5,7 +5,7 @@ ICLabelCount = zeros(3,7);
 totalData = 0;
 
 % Parameter: File IO 
-wkdirPath = 'C:\Users\kevin\Downloads\ds002723\'; % Set to the working directory you currently have.
+wkdirPath = ''; % Set to the working directory you currently have.
 filePath = [wkdirPath, 'ds002723\'];
 savePath = [wkdirPath, 'preprocessed\'];
 
