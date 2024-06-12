@@ -1,8 +1,10 @@
 EEG.etc.eeglabvers = '2024.0';
+
+% Initialize
 totalData = 0;
 
-% Set File IO parameter
-wkdirPath = 'C:\Users\kevin\Downloads\ds002723\';
+% Parameter: File IO 
+wkdirPath = ''; % Set to the working directory you currently have.
 filePath = [wkdirPath, 'ds002723\'];
 savePath = [wkdirPath, 'preprocessed\'];
 
@@ -10,19 +12,19 @@ patientFolders = dir(fullfile(filePath, 'sub-*'));
 patientFolders = {patientFolders.name};
 numPatient = size(patientFolders, 2);
 
+disp(fullfile(filePath, 'sub-*'))
 for folderId = 1:numPatient
     curPath = [filePath, '\', char(patientFolders(folderId)), '\eeg'];
     filesName = dir(fullfile(curPath, '*.edf'));
 
     filesName = {filesName.name};
     numFile = size(filesName, 2);
-    totalData = totalData + numFile;
 
     for fileId = 1:numFile
         % Load  dataset
         fileName = char(filesName(fileId));
-        curFile = [curPath, '\', fileName];   
-        EEG = pop_biosig(curFile);       
+        curDataPath = [curPath, '\', fileName];   
+        EEG = pop_biosig(curDataPath);       
 
         % Remove non-EEG Channels
         EEG = pop_select( EEG, 'rmchannel',{'GSR','ECG','VA1','VA2'});
@@ -43,12 +45,14 @@ for folderId = 1:numPatient
         % ICLabel Reject Bad Components
         EEG = pop_runica(EEG, 'icatype', 'picard', 'maxiter',500);
         EEG = pop_iclabel(EEG, 'default');
+        
+        % Remove Bad Components and Reconstruct Good Components
         EEG = pop_icflag(EEG, [NaN NaN; 0.8 1; 0.8 1; 0.8 1; 0.8 1; 0.8 1; NaN NaN]);
-
-        % Reconstruct Good Components
         EEG = pop_subcomp( EEG, [], 0);
         
         % Save as a MATLAB dataset (.set) format
         EEG = pop_saveset( EEG, 'filename',[fileName(1:end-4), '.set'],'filepath',savePath);
+
+        totalData = totalData + 1;
     end
 end
